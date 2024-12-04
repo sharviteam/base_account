@@ -1,0 +1,23 @@
+<odoo>
+    <template id="report_invoice_with_payments_inherited" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <t t-if="o.po_number">
+                <div class="col-auto col-3 mw-100 mb-2" name="custom_section"> 
+                    <strong>PO Reference Number:</strong>
+                        <p class="m-0" t-field="o.po_number"/> 
+                </div>
+            </t>
+            <t t-if="o.po_date">
+                <div class="col-auto col-3 mw-100 mb-2" name="PO date">
+                    <strong>PO Date:</strong>
+                        <p class="m-0" t-field="o.po_date"/>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='partner_vat_address_same_as_shipping']" position="after">
+            <div t-if="o.partner_id.l10n_in_pan" id="partner_pan_address_same_as_shipping">
+                <strong>PAN Number:</strong> <span t-esc="o.partner_id.l10n_in_pan"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
